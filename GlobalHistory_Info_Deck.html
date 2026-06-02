@@ -1,0 +1,1453 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9th Grade Global History Regents Mega-Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* --- CORE STYLES & VARIABLE THEMING --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #0f172a;
+            color: #1e293b;
+            padding: 40px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 60px;
+        }
+
+        /* Fixed 16:9 Aspect Presentation Design */
+        .slide {
+            width: 1280px;
+            height: 720px;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            padding: 45px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        /* Color Themes per Era/Topic */
+        .slide-blue { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); }
+        .slide-purple { background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); }
+        .slide-amber { background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); }
+        .slide-emerald { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); }
+        .slide-rose { background: linear-gradient(135deg, #fff5f5 0%, #ffe4e6 100%); }
+
+        /* Slide Header Typography */
+        .slide-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 4px dashed #cbd5e1;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            z-index: 10;
+        }
+
+        .slide-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 42px;
+            color: #0369a1;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .slide-purple .slide-title { color: #6b21a8; }
+        .slide-amber .slide-title { color: #b45309; }
+        .slide-emerald .slide-title { color: #047857; }
+        .slide-rose .slide-title { color: #be123c; }
+
+        .slide-badge {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+            border: 2px solid #e2e8f0;
+        }
+
+        /* Content Structure Options */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            flex-grow: 1;
+            align-items: center;
+            min-height: 0; 
+        }
+
+        /* Practice Grid Layout to make empty slides feel full */
+        .practice-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 30px;
+            flex-grow: 1;
+            align-items: center;
+            min-height: 0;
+        }
+
+        .practice-clip-art-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.6);
+            border: 3px dashed #cbd5e1;
+            border-radius: 24px;
+            height: 100%;
+            max-height: 500px;
+            gap: 15px;
+            color: #64748b;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .practice-clip-art-box i {
+            font-size: 110px;
+            transition: transform 0.3s ease;
+        }
+        .practice-clip-art-box:hover i {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .practice-clip-art-box h4 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 28px;
+            color: #334155;
+        }
+
+        /* Card and Interactive UI Boxes */
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.04);
+            border: 2px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: #cbd5e1;
+        }
+
+        .card h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 26px;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p, .card li {
+            font-size: 20px;
+            color: #334155;
+            line-height: 1.45;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            padding-left: 5px;
+        }
+
+        /* Interactive Vocabulary Flip Component */
+        .vocab-flip-box {
+            background-color: transparent;
+            width: 100%;
+            height: 110px;
+            perspective: 1000px;
+            margin-top: 5px;
+        }
+        .vocab-flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        .vocab-flip-box:hover .vocab-flip-inner {
+            transform: rotateX(180deg);
+        }
+        .vocab-front, .vocab-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 15px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .vocab-front {
+            background: #f0f9ff;
+            border-left: 6px solid #0ea5e9;
+            color: #0369a1;
+        }
+        .vocab-purple .vocab-front { background: #faf5ff; border-left-color: #a855f7; color: #6b21a8; }
+        .vocab-amber .vocab-front { background: #fffbeb; border-left-color: #f59e0b; color: #b45309; }
+        .vocab-emerald .vocab-front { background: #f0fdf4; border-left-color: #10b981; color: #047857; }
+        .vocab-rose .vocab-front { background: #fff5f5; border-left-color: #f43f5e; color: #be123c; }
+
+        .vocab-back {
+            background: #1e293b;
+            color: #f8fafc;
+            transform: rotateX(180deg);
+        }
+        .vocab-front span { font-size: 14px; font-weight: 700; text-transform: uppercase; opacity: 0.8; }
+        .vocab-front h4 { font-family: 'Fredoka', sans-serif; font-size: 22px; }
+        .vocab-back p { font-size: 18px; color: #cbd5e1; }
+
+        /* Practice Regents Prompt Card Container */
+        .practice-card {
+            background: #fffbeb;
+            border: 3px solid #fcd34d;
+            border-radius: 24px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+        .practice-stimulus {
+            background: #ffffff;
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-style: italic;
+            font-size: 18px;
+            line-height: 1.4;
+            border-left: 6px solid #fbbf24;
+            color: #475569;
+        }
+        .practice-question {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        .interactive-reveal-btn {
+            background: #d97706;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            align-self: flex-start;
+            transition: background 0.2s;
+        }
+        .interactive-reveal-btn:hover { background: #b45309; }
+        .reveal-answer {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, opacity 0.3s ease;
+            background: #10b981;
+            color: white;
+            padding: 0 18px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .practice-card.active .reveal-answer {
+            max-height: 60px;
+            opacity: 1;
+            padding: 12px 18px;
+        }
+
+        /* Non-Destructive, Contain-Safe Image Boxes */
+        .image-container {
+            width: 100%;
+            height: 100%;
+            max-height: 520px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 6px solid #ffffff;
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background: #f8fafc;
+        }
+        .image-container img {
+            width: 100%;
+            flex-grow: 1;
+            object-fit: contain;
+            background: #f1f5f9;
+            min-height: 0;
+            transition: transform 0.3s ease;
+        }
+        .image-container:hover img {
+            transform: scale(1.02);
+        }
+        .image-caption {
+            background: #ffffff;
+            padding: 10px 16px;
+            font-size: 14px;
+            color: #64748b;
+            border-top: 2px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        /* Flow Diagrams & Data Tables */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            margin-top: 5px;
+        }
+        .flow-step {
+            background: #f8fafc;
+            border: 2px solid #cbd5e1;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+        .flow-arrow {
+            font-size: 20px;
+            color: #94a3b8;
+        }
+
+        table {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 2px solid #e2e8f0;
+        }
+        th {
+            background: #0ea5e9;
+            color: white;
+            padding: 14px;
+            font-size: 18px;
+            font-family: 'Fredoka', sans-serif;
+            text-align: left;
+        }
+        td {
+            background: white;
+            padding: 14px;
+            border-bottom: 2px solid #f1f5f9;
+            font-size: 16px;
+        }
+        tr:last-child td { border-bottom: none; }
+
+        /* Unified Top Navigation Tracking Header */
+        .presentation-nav-tracker {
+            width: 1280px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1e293b;
+            padding: 12px 30px;
+            border-radius: 16px;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid #334155;
+        }
+        .progress-bar-bg {
+            width: 300px;
+            height: 8px;
+            background: #334155;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: #38bdf8;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Achievement Notification Badges */
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #fffbeb;
+            border: 1px solid #fde047;
+            color: #a16207;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            width: fit-content;
+        }
+        
+        /* Intro / Outro Splash Displays */
+        .title-slide {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at top right, #0284c7 0%, #0f172a 100%);
+            color: #ffffff;
+        }
+        .title-slide h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 68px;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            color: #38bdf8;
+        }
+        .title-slide h2 {
+            font-size: 28px;
+            color: #f1f5f9;
+            font-weight: 400;
+            margin-bottom: 35px;
+        }
+        .title-slide .footer-tag {
+            font-size: 18px;
+            color: #94a3b8;
+            border-top: 2px dashed #334155;
+            padding-top: 15px;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="presentation-nav-tracker">
+        <div><i class="fa-solid fa-graduation-cap" style="color:#38bdf8;"></i> NYS Regents History I Interactive Prep Companion</div>
+        <div style="display:flex; align-items:center; gap:12px;">
+            <span id="slide-index-counter">Slide 1 of 33</span>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-indicator"></div></div>
+        </div>
+    </div>
+
+    <div class="slide title-slide" data-index="1">
+        <h1>GLOBAL HISTORY I<br><span style="color: #f472b6;">REGENTS MEGA-REVIEW</span></h1>
+        <h2>Mastering Content &amp; Exam Vocabulary From Unit 1 to Exploration</h2>
+        <div class="footer-tag">
+            <i class="fa-solid fa-chalkboard-user"></i> 9th Grade ICT Social Studies Review Session
+        </div>
+    </div>
+
+    <div class="slide slide-blue" data-index="2">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-compass-drafting"></i> Tools of the Social Scientists</div>
+            <div class="slide-badge">Unit 1.1</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3><i class="fa-solid fa-book-open" style="color: #0284c7;"></i> Historians</h3>
+                    <p>They evaluate <strong>written records</strong> (like journals, letters, and laws) to piece together why historical developments occurred.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-earth-americas" style="color: #0d9488;"></i> Geographers</h3>
+                    <p>They study how <strong>climate, terrain, and resource location</strong> affect human populations, settlement distribution, and global movement patterns.</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front">
+                            <span><i class="fa-solid fa-arrow-pointer"></i> Hover to Flip</span>
+                            <h4>Regents Term: Primary Source</h4>
+                        </div>
+                        <div class="vocab-back">
+                            <p>An eyewitness document, artifact, or diary created exactly during the time period under analysis.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #0d9488; color: #0d9488;">
+                            <span><i class="fa-solid fa-arrow-pointer"></i> Hover to Flip</span>
+                            <h4>Regents Term: Human-Environment Interaction</h4>
+                        </div>
+                        <div class="vocab-back">
+                            <p>The ways people adapt to, modify, or depend on their local physical geography to survive.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="3">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-map-location-dot"></i> Geography: Reading the Map</div>
+            <div class="slide-badge">Unit 1.2</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_01.jpeg" alt="Historical map illustration showing grid layout">
+                <div class="image-caption">
+                    <span>Source: Cartographic Archive File</span>
+                    <p>Slide_01.jpeg - Regional Map Topology Matrix</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card" style="border-left: 8px solid #f472b6;">
+                    <h3>Political Maps</h3>
+                    <p>Show <strong>man-made boundaries</strong> like national borders, sovereign kingdoms, territorial lines, and major administrative capital cities.</p>
+                </div>
+                <div class="card" style="border-left: 8px solid #0ea5e9;">
+                    <h3>Physical Maps</h3>
+                    <p>Show <strong>topography</strong>&mdash;natural physical elements of the earth surface including mountain chains, rivers, plateau heights, and deserts.</p>
+                </div>
+                <div class="badge-pill"><i class="fa-solid fa-bolt"></i> Map Skill: Check legends to classify map models!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-purple" data-index="4">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-magnifying-glass"></i> Practice: Source Analysis</div>
+            <div class="slide-badge">Skills Lab</div>
+        </div>
+        <div class="practice-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px; justify-content: center;">
+                <div class="practice-card">
+                    <div class="practice-stimulus">"An excerpt from the official legal code written by King Hammurabi of Babylon inscribed on a stone pillar during his reign..."</div>
+                    <div class="practice-question">Question: How would a historian classify this type of evidence?</div>
+                    <button class="interactive-reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Show Regents Answer</button>
+                    <div class="reveal-answer">Answer: A Primary Source (Direct, contemporaneous artifact from that period).</div>
+                </div>
+                <div class="practice-card">
+                    <div class="practice-stimulus">"An analysis written by a 21st-century college professor studying ancient trade routes..."</div>
+                    <div class="practice-question">Question: What type of historical source is this?</div>
+                    <button class="interactive-reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Show Regents Answer</button>
+                    <div class="reveal-answer">Answer: A Secondary Source (An interpretation or critique written after the fact).</div>
+                </div>
+            </div>
+            <div class="practice-clip-art-box" style="border-color: #a855f7; color: #a855f7;">
+                <i class="fa-solid fa-folder-open"></i>
+                <h4>Source Lab Analysis</h4>
+                <p style="font-size:16px;">Evaluate your historical evidence systematically like a social scientist!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-blue" data-index="5">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-gavel"></i> Uncovering Artifacts &amp; Culture</div>
+            <div class="slide-badge">Unit 1.3</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3><i class="fa-solid fa-people-group" style="color: #7e22ce;"></i> Anthropologists</h3>
+                    <p>They examine the development of human <strong>cultures, shared beliefs, values, and customs</strong> over generations.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fa-solid fa-person-digging" style="color: #a21caf;"></i> Archaeologists</h3>
+                    <p>They excavate and evaluate <strong>physical remains</strong> left behind by early human populations.</p>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #a21caf; color: #a21caf;">
+                            <span><i class="fa-solid fa-arrow-pointer"></i> Hover to Flip</span>
+                            <h4>Regents Term: Artifacts</h4>
+                        </div>
+                        <div class="vocab-back">
+                            <p>Man-made physical items (tools, weapons, pottery) that reveal technical capabilities of ancient societies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="Slide_115.jpeg" alt="Archaeological fieldwork excavation dig site">
+                <div class="image-caption">
+                    <span>Source: Excavation Media Logs</span>
+                    <p>Slide_115.jpeg - Field Strata Dig Site</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-rose" data-index="6">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-person-hunting"></i> The Paleolithic Era: Nomadic Life</div>
+            <div class="slide-badge">Prehistory</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_116.jpeg" alt="Lascaux cave painting depicting ancient wildlife animals">
+                <div class="image-caption">
+                    <span>Source: Prehistoric Cave Art Gallery</span>
+                    <p>Slide_116.jpeg - Lascaux Cave Artwork Reproduction</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3><i class="fa-solid fa-tent" style="color: #be123c;"></i> Hunter-Gatherer Bands</h3>
+                    <ul>
+                        <li><strong>Nomadic lifestyle:</strong> Constant movement across geographical zones in search of migratory wildlife.</li>
+                        <li>Total, direct dependence on local natural cycles and climate conditions.</li>
+                    </ul>
+                </div>
+                <div class="card" style="background: #fff5f5; border: 2px dashed #f43f5e; text-align: center; justify-content: center; padding: 25px;">
+                    <p style="font-size: 24px; font-weight: 700; color: #be123c;">"No permanent agricultural settlements existed anywhere during this era."</p>
+                </div>
+                <div class="badge-pill" style="background:#fff1f2; border-color:#fda4af; color:#9f1239;"><i class="fa-solid fa-circle-exclamation"></i> Core Concept: Migration linked to herd behavior.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-emerald" data-index="7">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-wheat-awn"></i> The Neolithic Revolution</div>
+            <div class="slide-badge">Turning Point</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Agrarian Transition</h3>
+                    <p>Humans shifted from migratory foraging to <strong>cultivating deliberate crops (farming)</strong> and taming select animal species.</p>
+                </div>
+                <div class="card">
+                    <h3>Sedentary Life</h3>
+                    <p>Systematic farming led to predictable <strong>food surpluses</strong>, allowing permanent villages to develop.</p>
+                </div>
+                <div class="flow-container">
+                    <div class="flow-step">Farming Discovered</div>
+                    <div class="flow-arrow"><i class="fa-solid fa-right-long"></i></div>
+                    <div class="flow-step">Food Surplus</div>
+                    <div class="flow-arrow"><i class="fa-solid fa-right-long"></i></div>
+                    <div class="flow-step" style="background:#dcfce7; border-color:#4ade80;">Fixed Civilizations</div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #10b981; color: #047857;">
+                            <span><i class="fa-solid fa-arrow-pointer"></i> Hover to Flip</span>
+                            <h4>Regents Term: Domestication</h4>
+                        </div>
+                        <div class="vocab-back">
+                            <p>Taming and breeding wild animals for work, transportation, or a reliable protein supply.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #10b981; color: #047857;">
+                            <span><i class="fa-solid fa-arrow-pointer"></i> Hover to Flip</span>
+                            <h4>Regents Term: Agriculture</h4>
+                        </div>
+                        <div class="vocab-back">
+                            <p>The science or practice of farming, cultivating soil, growing crops, and raising livestock.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-emerald" data-index="8">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-circle-heading"></i> Practice: The Neolithic Turning Point</div>
+            <div class="slide-badge">Exam Prep</div>
+        </div>
+        <div class="practice-grid">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="practice-card" style="border-color:#10b981; background:#f0fdf4;">
+                    <div class="practice-stimulus" style="border-left-color:#10b981;">"The discovery of farming was a monumental turning point. It allowed man to settle down in one location, construct sturdy dwellings, accumulate property, and specialize in jobs other than finding food."</div>
+                    <div class="practice-question">Question: Based on this passage, what was a direct social effect of the Neolithic Revolution?</div>
+                    <button class="interactive-reveal-btn" style="background:#059669;" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Show Regents Answer</button>
+                    <div class="reveal-answer" style="background:#059669;">Answer: The development of permanent, sedentary settlements and job specialization.</div>
+                </div>
+            </div>
+            <div class="practice-clip-art-box" style="border-color: #10b981; color: #10b981;">
+                <i class="fa-solid fa-seedling"></i>
+                <h4>Turning Point Module</h4>
+                <p style="font-size:16px;">Farming altered early human society structural frameworks forever!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-blue" data-index="9">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-water"></i> Ancient Egypt: Environmental Adaptation</div>
+            <div class="slide-badge">River Valleys</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Geographic Context</h3>
+                    <p>Egyptian civilization flourished along the Nile River because of its <strong>predictable, annual flooding cycles</strong>, which left behind rich alluvial soil known as <strong>silt</strong>.</p>
+                </div>
+                <div class="card">
+                    <h3>Modifying the River</h3>
+                    <p>To control the environment, Egyptians engineered complex <strong>irrigation networks, storage canals, and dikes</strong> to divert river flow safely into farm fields.</p>
+                </div>
+                <div class="badge-pill" style="background:#e0f2fe; border-color:#7dd3fc; color:#0369a1;"><i class="fa-solid fa-gears"></i> Key Concept: Modification increases resource reliability.</div>
+            </div>
+            <div class="image-container">
+                <img src="Slide_109.jpeg" alt="Ancient Egyptian Architectural Ruins along the Nile">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_109.jpeg - Nile Valley Infrastructure Footprint</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="10">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-scale-balanced"></i> Mesopotamia: The River Valley Law</div>
+            <div class="slide-badge">River Valleys</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_117.jpeg" alt="Detail of cuneiform script on the Code of Hammurabi stele">
+                <div class="image-caption">
+                    <span>Source: Historical Law Code Vault</span>
+                    <p>Slide_117.jpeg - Stele of Hammurabi Text Detail</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Tigris &amp; Euphrates Rivers</h3>
+                    <p>Unpredictable, often violent flooding forced local communities to coordinate large-scale water management projects to protect crops.</p>
+                </div>
+                <div class="card" style="background: #f0f9ff; border-color: #7dd3fc;">
+                    <h3>The Code of Hammurabi</h3>
+                    <p>The first major <strong>codified (written down) legal system</strong>. It aimed to create state-enforced social stability through explicit public penalties.</p>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #e11d48; color: #9f1239; background: #fff1f2;">
+                            <span><i class="fa-solid fa-triangle-exclamation"></i> Regents Rule: Law &amp; Status</span>
+                            <h4>Punishments Were Correlated to Class</h4>
+                        </div>
+                        <div class="vocab-back" style="background:#be123c;">
+                            <p>Penalties differed strictly depending on whether the offender or victim was a nobleman, commoner, or enslaved person.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="11">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-scale-unbalanced-flip"></i> Practice: Codified Justice</div>
+            <div class="slide-badge">Regents Review</div>
+        </div>
+        <div class="practice-grid">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="practice-card">
+                    <div class="practice-stimulus">"Law 196: If a nobleman puts out the eye of another nobleman, his eye shall be put out. Law 198: If he puts out the eye of a commoner, he shall pay one gold mina." — Code of Hammurabi</div>
+                    <div class="practice-question">Question: What structural feature of Babylonian society does this legal document explicitly reveal?</div>
+                    <button class="interactive-reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Show Regents Answer</button>
+                    <div class="reveal-answer">Answer: Social inequality and rigid hierarchy; justice was executed based directly on class status.</div>
+                </div>
+            </div>
+            <div class="practice-clip-art-box" style="border-color: #fbbf24; color: #d97706;">
+                <i class="fa-solid fa-gavel"></i>
+                <h4>Legal Code Review</h4>
+                <p style="font-size:16px;">Codified laws standardize punishments, but class hierarchies governed actual enforcement.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-purple" data-index="12">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-building-columns"></i> Indus Valley Planning &amp; Chinese Isolation</div>
+            <div class="slide-badge">Early Civilizations</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Indus Valley (Harappa)</h3>
+                    <p>Famous for highly advanced <strong>urban planning</strong> systems, featuring straight streets arranged in an intentional grid pattern, standard brick molds, and complex indoor drainage plumbing.</p>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #a855f7; color: #6b21a8;">
+                            <span><i class="fa-solid fa-wind"></i> Climate Driver</span>
+                            <h4>Regents Factor: Monsoons</h4>
+                        </div>
+                        <div class="vocab-back">
+                            <p>Seasonal winds that create vital wet seasons for farming but required infrastructure to prevent widespread flooding.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Huang He Valley (China)</h3>
+                    <p>Highly isolated from other early centers of civilization by vast western deserts and the imposing Himalaya mountain chain.</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="image-container" style="height: 280px;">
+                    <img src="Slide_118.jpeg" alt="Excavated urban ruins of Mohenjo-daro showing layout">
+                    <div class="image-caption">
+                        <span>Source: Indus Urbanism Collection</span>
+                        <p>Slide_118.jpeg - Grid Infrastructure Excavation</p>
+                    </div>
+                </div>
+                <div class="vocab-flip-box" style="height:100px;">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #d946ef; color: #a21caf; background: #fdf4ff;">
+                            <span><i class="fa-solid fa-crown"></i> Middle Kingdom Identity</span>
+                            <h4>Regents Term: Ethnocentrism</h4>
+                        </div>
+                        <div class="vocab-back" style="background:#a21caf;">
+                            <p>The cultural worldview belief that your own society is naturally superior to all external foreign ethnic groups.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="13">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-mountain-sun"></i> Classical Greece: Political Isolation</div>
+            <div class="slide-badge">Classical Era</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_101.jpeg" alt="Rugged, mountainous topography view of Greece">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_101.jpeg - Fragmented Greek Terrains</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Geographic Barriers</h3>
+                    <p>Rugged, limestone mountains, deeply isolated inland valleys, and thousands of scattered islands physically kept Greek communities divided.</p>
+                </div>
+                <div class="card" style="border-left: 8px solid #0ea5e9; background: #f0f9ff;">
+                    <h3>The Political Result</h3>
+                    <p>Instead of merging into a single unified kingdom, Greece fragmented into independent, sovereign <strong>City-States (Polis)</strong> with distinct values, such as Democratic Athens and militaristic Sparta.</p>
+                </div>
+                <div class="badge-pill"><i class="fa-solid fa-network-wired"></i> Geography directly shapes political fragmentation!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-purple" data-index="14">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-arrows-split-up-and-left"></i> Alexander &amp; Cultural Diffusion</div>
+            <div class="slide-badge">Classical Era</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Empire Building</h3>
+                    <p>Alexander the Great conquered Greece, overthrew the Persian Empire, marched into Egypt, and reached borders of northwestern India, unifying disparate regions under one Macedonian crown.</p>
+                </div>
+                <div class="card" style="background: #fff1f2; border-color: #fb7185;">
+                    <h3>Hellenistic Civilization</h3>
+                    <p>A new, vibrantly blended cosmopolitan culture that intentionally mixed elements of <strong>Greek, Persian, Egyptian, and Indian</strong> systems of life.</p>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #ec4899; color: #be123c; background:#fdf2f8;">
+                            <span><i class="fa-solid fa-circle-nodes"></i> Standard Reference Target</span>
+                            <h4>Regents Core: Cultural Diffusion</h4>
+                        </div>
+                        <div class="vocab-back" style="background:#be123c;">
+                            <p>The spread, exchange, and modification of technological practices, ideas, or artistic styles between disparate cultures.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="Slide_119.jpeg" alt="Classical portrait sculpture bust of Alexander the Great">
+                <div class="image-caption">
+                    <span>Source: Classical Sculpture Archives</span>
+                    <p>Slide_119.jpeg - Imperial Portrait Bust Exhibit</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-blue" data-index="15">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-landmark"></i> Classical Rome: Unity &amp; Infrastructure</div>
+            <div class="slide-badge">Classical Era</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_12.jpeg" alt="Ancient Roman structural ruins showing arches and pillars">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_12.jpeg - Infrastructure Footprint of Central Rome</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>The Twelve Tables</h3>
+                    <p>Publicly displayed written legal statutes that codified standard citizen rights and guaranteed protection under state power.</p>
+                </div>
+                <div class="card">
+                    <h3>Political Centralization</h3>
+                    <p>Unlike Greece's fragmented mountains, Italy's open plains and central Mediterranean location allowed Rome to build and sustain a massive, highly centralized empire linked by all-weather roads.</p>
+                </div>
+                <div class="badge-pill" style="background:#f0fdf4; border-color:#86efac; color:#166534;"><i class="fa-solid fa-road"></i> Engineering Focus: Roads facilitated rapid military deployment.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="16">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-arrows-left-right"></i> Practice: Greek vs. Roman Terrain</div>
+            <div class="slide-badge">Comparative Analysis</div>
+        </div>
+        <div class="practice-grid">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="practice-card" style="border-color:#b45309; background:#fffbeb;">
+                    <div class="practice-stimulus" style="border-left-color:#b45309;">"Greece's terrain splintered the population into rival autonomous towns... Meanwhile, Italy's smooth plains along the Mediterranean allowed a single capital to stretch its administration uniformly across the landscape."</div>
+                    <div class="practice-question">Question: How did geographic features influence the political frameworks of Greece and Rome differently?</div>
+                    <button class="interactive-reveal-btn" style="background:#d97706;" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Show Regents Answer</button>
+                    <div class="reveal-answer" style="background:#d97706;">Answer: Greece's mountain topography caused decentralized city-states; Rome's open terrain allowed for political centralization and unified empire building.</div>
+                </div>
+            </div>
+            <div class="practice-clip-art-box" style="border-color: #b45309; color: #b45309;">
+                <i class="fa-solid fa-earth-europe"></i>
+                <h4>Geographic Impact</h4>
+                <p style="font-size:16px;">Topography determines whether an early empire centralizes or fractures into individual pieces.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-emerald" data-index="17">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-scroll"></i> Han China: Dynastic Order &amp; Merit</div>
+            <div class="slide-badge">Classical Asia</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div class="card">
+                    <h3>The Mandate of Heaven</h3>
+                    <p>The belief that Chinese emperors received moral, divine authority to rule from the cosmos. If they became corrupt, natural disasters or rebellion signaled they had lost the mandate, justifying a new dynasty.</p>
+                </div>
+                <div class="badge-pill" style="background:#f0fdf4; border-color:#bbf7d0; color:#166534;"><i class="fa-solid fa-arrows-spin"></i> Core Concept: Drives the Chinese Dynastic Cycle.</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card" style="background: #f0fdf4; border-color: #4ade80;">
+                    <h3>Civil Service Exams</h3>
+                    <p>An administrative system where lucrative government administrative jobs were awarded strictly based on educational merit and testing scores covering <strong>Confucian classics</strong>, bypassing family aristocratic status.</p>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #15803d; color: #166534;">
+                            <span><i class="fa-solid fa-award"></i> Meritocracy Baseline</span>
+                            <h4>Regents Goal: Social Order via Respect</h4>
+                        </div>
+                        <div class="vocab-back" style="background:#15803d;">
+                            <p>Confucian philosophy emphasizes filial piety, traditional hierarchy, and five relationships to establish harmony across the state.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-purple" data-index="18">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-om"></i> Hinduism &amp; Social Stratification</div>
+            <div class="slide-badge">Belief Systems</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_102.jpeg" alt="Traditional Indian iconography depicting sacred spiritual elements">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_102.jpeg - Belief Systems &amp; Social Context</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div class="card">
+                    <h3>The Caste System</h3>
+                    <p>A highly rigid social structure determined entirely by <strong>birth</strong> that dictated an individual's profession, marriage pool, and status with <strong>zero lifestyle social mobility</strong>.</p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Regents Definition Baseline</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Reincarnation</strong></td>
+                            <td>The cycle of spiritual rebirth into new bodily forms.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Karma</strong></td>
+                            <td>The moral tally of a soul's actions that determines future status.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dharma</strong></td>
+                            <td>Fulfilling your specific caste duties and moral codes.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-emerald" data-index="19">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-wheel-of-dharma"></i> Buddhism: Path to Spiritual Liberation</div>
+            <div class="slide-badge">Belief Systems</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Four Noble Truths</h3>
+                    <p>Siddhartha Gautama taught that all human life contains suffering, and that this pain is fundamentally caused by <strong>selfish material desires</strong>.</p>
+                </div>
+                <div class="card">
+                    <h3>The Eightfold Path</h3>
+                    <p>An ethical, daily behavioral guide designed to systematically eliminate worldly desire and lead individuals directly to achieving <strong>Nirvana</strong> (spiritual peace and cessation of rebirth).</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="Slide_103.jpeg" alt="Classical Buddhist architectural site reflecting meditative design">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_103.jpeg - Monastic Centers &amp; Philosophical Dissemination</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="20">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-star-and-crescent"></i> Monotheistic Traditions of the Middle East</div>
+            <div class="slide-badge">Belief Systems</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_104.jpeg" alt="Historic monotheistic sacred location architectural context">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_104.jpeg - Shared Geographical Holy Sites</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Common Foundations</h3>
+                    <p><strong>Judaism, Christianity, and Islam</strong> are all strictly <strong>Monotheistic</strong> (worshiping one singular supreme God) and trace their spiritual line back to Abraham.</p>
+                </div>
+                <div class="card" style="background:#fffbeb; border-color:#fbbf24;">
+                    <p><strong>Islam Focus:</strong> Guided systematically by the <strong>Five Pillars</strong>: Faith (Shahada), Daily Prayer (Salah), Charity (Zakat), Fasting (Ramadan), and the Hajj pilgrimage to Mecca.</p>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #b45309; color: #78350f;">
+                            <span><i class="fa-solid fa-scale-balanced"></i> Shared Ethical Frameworks</span>
+                            <h4>Moral Codes of Conduct</h4>
+                        </div>
+                        <div class="vocab-back" style="background:#78350f;">
+                            <p>All three major Western traditions provide strict lifestyle guidelines, such as the Ten Commandments, to direct social justice behaviors.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-blue" data-index="21">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-circle-nodes"></i> The Byzantine Empire: Trade Crossroads</div>
+            <div class="slide-badge">Post-Classical Era</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Geographic Advantage</h3>
+                    <p>The strategic imperial capital, <strong>Constantinople</strong>, sat directly on the narrow Bosporus Strait, making it the premier international commercial crossroads linking trade between Europe and Asia.</p>
+                </div>
+                <div class="card" style="border-left:6px solid #0369a1;">
+                    <h3>Justinian's Code</h3>
+                    <p>Preserved, updated, and consolidated complex ancient Roman legal concepts, serving as the baseline for civil law codes across modern Europe.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="Slide_105.jpeg" alt="Hagia Sophia reflecting Byzantine dome architecture">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_105.jpeg - Monumental Byzantine Civil Engineering</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-rose" data-index="22">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-shield-halved"></i> Western Europe: Feudalism &amp; Manorialism</div>
+            <div class="slide-badge">Middle Ages</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_108.jpeg" alt="Illustration of a self-sufficient medieval European agricultural manor estate">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_108.jpeg - Agrarian Feudal Spatial Footprint</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card" style="border-left: 6px solid #be123c;">
+                    <h3>Feudalism (Political System)</h3>
+                    <p>A highly <strong>decentralized</strong> system of governance based on clear <strong>mutual obligations</strong>: regional lords granted fiefs (land) to military vassals in exchange for oaths of direct security loyalty.</p>
+                </div>
+                <div class="card" style="border-left: 6px solid #e11d48;">
+                    <h3>Manorialism (Economic System)</h3>
+                    <p>A localized, completely <strong>self-sufficient</strong> economic layout centered around the lord's agricultural manor estate, where unfree serfs performed labor in exchange for safety.</p>
+                </div>
+                <div class="badge-pill" style="background:#fff1f2; border-color:#fecdd3; color:#9f1239;"><i class="fa-solid fa-lock"></i> Economic Reality: Minimal external trade occurred during this era.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-rose" data-index="23">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-square-poll-horizontal"></i> Practice: The Rise of Feudalism</div>
+            <div class="slide-badge">Regents Lab</div>
+        </div>
+        <div class="practice-grid">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="practice-card" style="border-color:#be123c; background:#fff5f5;">
+                    <div class="practice-stimulus" style="border-left-color:#be123c;">"Following the collapse of centralized Roman authority, Western Europe was plagued by frequent invasions. Lacking a strong central government or standing army to enforce security, local communities relied on regional nobles for protection..."</div>
+                    <div class="practice-question">Question: What historical turning point directly caused the development of feudalism in Western Europe?</div>
+                    <button class="interactive-reveal-btn" style="background:#be123c;" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Show Regents Answer</button>
+                    <div class="reveal-answer" style="background:#be123c;">Answer: The Fall of the Roman Empire, which triggered severe political instability, lawlessness, and decentralization.</div>
+                </div>
+            </div>
+            <div class="practice-clip-art-box" style="border-color: #f43f5e; color: #e11d48;">
+                <i class="fa-solid fa-fortress-castle"></i>
+                <h4>Feudal Security Module</h4>
+                <p style="font-size:16px;">When central superpowers fall, local lords trade regional land for immediate safety assets.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-purple" data-index="24">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-horse"></i> The Mongol Empire: Interconnected Eurasia</div>
+            <div class="slide-badge">Post-Classical Era</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Pax Mongolica</h3>
+                    <p>An era of strict political stability, law consolidation, and absolute highway safety established by Mongol conquests across the Eurasian continent.</p>
+                </div>
+                <div class="card" style="border-top: 6px solid #a855f7;">
+                    <h3>The Commercial Result</h3>
+                    <p>Protected continental trade flourished aggressively along the overland <strong>Silk Road</strong>, leading to massive cultural diffusion of eastern technical innovations (gunpowder, printing, compass) from East Asia to Western Europe.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="Slide_110.jpeg" alt="Eurasian steppe geographical landscape view">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_110.jpeg - The Steppe Environment Matrix</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-rose" data-index="25">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-biohazard"></i> The Black Death: Pandemics and Trade</div>
+            <div class="slide-badge">Global Crises</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_111.jpeg" alt="Medieval manuscript art depicting plague medical crisis context">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_111.jpeg - Demographic Shift Data Point</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Demographic Collapse</h3>
+                    <p>The Bubonic Plague pandemic spread rapidly across Afro-Eurasia by hitchhiking along the highly active trade routes originally secured by Pax Mongolica.</p>
+                </div>
+                <div class="card" style="background:#fff1f2; border-color:#f87171;">
+                    <h3>Economic Impact on Feudalism</h3>
+                    <p>Catastrophic regional mortality rates created severe <strong>labor shortages</strong>. Surviving peasants and serfs demanded wages, heavily weakening the traditional self-sufficient manor framework.</p>
+                </div>
+                <div class="badge-pill" style="background:#fff1f2; border-color:#fda4af; color:#9f1239;"><i class="fa-solid fa-chart-line-down"></i> Epidemic Factor: Disease mimics commercial pathways!</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="26">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-cross"></i> The Crusades: A Catalyst for Commercial Growth</div>
+            <div class="slide-badge">Turning Point</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>The Direct Conflict</h3>
+                    <p>A series of holy wars launched by European Latin Christians to capture Jerusalem from Muslim control. Militarily, the Crusades failed to secure long-term occupation of the Levant.</p>
+                </div>
+                <div class="card" style="background: #fffbeb; border-color: #f59e0b;">
+                    <h3>The Long-Term Impact</h3>
+                    <p>Returning crusaders brought home an intense consumer appetite for Eastern commodities (spices, fine silks, sugar). This permanently sparked a major <strong>revival of trade</strong> across Europe.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="Slide_112.jpeg" alt="Medieval walled fortress illustrative model view">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_112.jpeg - Levantine Defenses &amp; Conflict Layout</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="27">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-right-left"></i> Practice: Commercial Diffusion</div>
+            <div class="slide-badge">Source Lab</div>
+        </div>
+        <div class="practice-grid">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="practice-card">
+                    <div class="practice-stimulus">"While the knights brought bloodshed to the Levant, the ships returning to Venice and Genoa brought back commodities far more valuable: pepper, cinnamon, mathematical texts, and chemical formulas pioneered during the Islamic Golden Age..."</div>
+                    <div class="practice-question">Question: What was a major long-term consequence of the Crusades for Western Europe?</div>
+                    <button class="interactive-reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Show Regents Answer</button>
+                    <div class="reveal-answer">Answer: An aggressive expansion of commercial trade routes and direct exposure to advanced Middle Eastern scientific and mathematical innovations.</div>
+                </div>
+            </div>
+            <div class="practice-clip-art-box" style="border-color: #d97706; color: #b45309;">
+                <i class="fa-solid fa-ship"></i>
+                <h4>Maritime Trade Lab</h4>
+                <p style="font-size:16px;">Conflict frequently creates unintended channels of high-velocity exchange.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-blue" data-index="28">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-palette"></i> The Renaissance: Secular Shift</div>
+            <div class="slide-badge">Cultural Rebirth</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_10.jpeg" alt="Classical Renaissance urban dome skyline architecture in Florence">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_10.jpeg - Urban Centers of the Italian Renaissance</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Humanism</h3>
+                    <p>An influential intellectual philosophy that celebrated individual human potential, worldly <strong>secular</strong> accomplishments, and a systematic revival of classical Greco-Roman literary texts.</p>
+                </div>
+                <div class="card" style="border-left: 6px solid #0891b2; background: #f0f9ff;">
+                    <p><strong>Niccolò Machiavelli:</strong> Wrote <em>The Prince</em> as a realistic handbook for secular political governance. He argued that rulers must perform whatever actions are required to secure state power&mdash;"the end justifies the means."</p>
+                </div>
+                <div class="badge-pill"><i class="fa-solid fa-brain"></i> Focus Shift: Transitioning from medieval scholastic theology to secular analysis.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-purple" data-index="29">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-print"></i> The Protestant Reformation &amp; Tech</div>
+            <div class="slide-badge">Turning Point</div>
+        </div>
+        <div class="content-grid">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>Martin Luther</h3>
+                    <p>In 1517, he posted his radical <strong>95 Theses</strong> in Germany, publicly criticizing the Catholic Church's absolute financial authority and theological corruption, specifically targeting the sale of spiritual indulgences.</p>
+                </div>
+                <div class="card" style="border-color: #38bdf8; background: #f0f9ff;">
+                    <h3>The Printing Press Catalyst</h3>
+                    <p>Johannes Gutenberg's movable type printing press allowed the 95 Theses and translated Bibles to be reproduced at unprecedented speeds in local <strong>vernacular</strong> languages, bypassing Church containment lines.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="Slide_11.jpeg" alt="Historical library collection displaying early printed books">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_11.jpeg - Media Infrastructure &amp; Information Spread</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-emerald" data-index="30">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-trowel"></i> Environmental Modification in the Americas</div>
+            <div class="slide-badge">The Americas</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_106.jpeg" alt="Machu Picchu stone agricultural terracing structures">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_106.jpeg - Incan High-Altitude Terracing Engineering</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card" style="border-top: 6px solid #10b981;">
+                    <h3>Aztecs: Chinampas</h3>
+                    <p>Constructed artificial, nutrient-dense floating mud crop islands over shallow marshy lake beds to generate massive agricultural yields for their island urban center, Tenochtitlan.</p>
+                </div>
+                <div class="card" style="border-top: 6px solid #eab308;">
+                    <h3>Incas: Terrace Farming</h3>
+                    <p>Carved thousands of flat steps into sheer, steep vertical Andean mountain faces to systematically gain farmable plots and arrest topsoil irrigation runoff erosion.</p>
+                </div>
+                <div class="vocab-flip-box">
+                    <div class="vocab-flip-inner">
+                        <div class="vocab-front" style="border-left-color: #047857; color: #166534; background: #e8f5e9;">
+                            <span><i class="fa-solid fa-seedling"></i> Master Theme Integration</span>
+                            <h4>Regents Standard Target Concept</h4>
+                        </div>
+                        <div class="vocab-back" style="background:#166534;">
+                            <p>Both global empires represent textbook case studies of human societies modifying their natural landscapes to create agricultural yields.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="31">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-compass"></i> The Age of Exploration</div>
+            <div class="slide-badge">Global Connections</div>
+        </div>
+        <div class="content-grid">
+            <div class="image-container">
+                <img src="Slide_13.jpeg" alt="Historical navigation illustration depicting maritime sailing routes">
+                <div class="image-caption">
+                    <span>Source: User Archive</span>
+                    <p>Slide_13.jpeg - Transatlantic Maritime Vectors</p>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card">
+                    <h3>The 3 G's of Motivation</h3>
+                    <p>European maritime expansion voyages were propelled by three factors: <strong>Gold</strong> (lucrative spice trade routes), <strong>Glory</strong> (national status rivalry), and <strong>God</strong> (converting populations to Christianity).</p>
+                </div>
+                <div class="card" style="border-left: 6px solid #b45309;">
+                    <h3>The Columbian Exchange</h3>
+                    <p>The permanent, historic global transfer of flora, livestock, agricultural crops, human populations, and deadly microscopic pathogens between Western and Eastern hemispheres following 1492.</p>
+                </div>
+                <div class="badge-pill" style="background:#fffbeb; border-color:#fde047; color:#a16207;"><i class="fa-solid fa-virus-covid"></i> Impact note: Smallpox decimated native populations.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide slide-amber" data-index="32">
+        <div class="slide-header">
+            <div class="slide-title"><i class="fa-solid fa-vault"></i> Practice: Global Mercantilism</div>
+            <div class="slide-badge">Exam Mastery</div>
+        </div>
+        <div class="practice-grid">
+            <div style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="practice-card" style="border-color:#d97706; background:#fffbeb;">
+                    <div class="practice-stimulus" style="border-left-color:#d97706;">"Colonies exist solely to benefit the home country. They must ship raw materials exclusively to the mother country and purchase her manufactured goods, ensuring wealth builds up in the imperial treasury."</div>
+                    <div class="practice-question">Question: What exclusive state-controlled economic system is defined in this programmatic statement?</div>
+                    <button class="interactive-reveal-btn" style="background:#b45309;" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Show Regents Answer</button>
+                    <div class="reveal-answer" style="background:#b45309;">Answer: Mercantilism (Imperial resource accumulation model).</div>
+                </div>
+            </div>
+            <div class="practice-clip-art-box" style="border-color: #fbbf24; color: #b45309;">
+                <i class="fa-solid fa-coins"></i>
+                <h4>Global Mercantilism</h4>
+                <p style="font-size:16px;">Colonies funnel raw materials in while empires hoard gold reserves bullion.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); align-items: center; justify-content: center;" data-index="33">
+        <h2 style="font-family:'Fredoka'; font-size: 84px; color: #10b981; text-align:center;">YOU ARE READY!</h2>
+        <p style="font-size: 32px; color: #065f46; text-align: center; margin-top: 15px; max-width: 800px;">Review your targeted vocabulary terms, trace geographic environments to human adaptations, and conquer the Regents Exam!</p>
+        <div style="margin-top: 30px; font-size: 48px; color: #fbbf24;"><i class="fa-solid fa-circle-check"></i></div>
+    </div>
+
+    <script>
+        // Interactive Answer Reveal Mechanism
+        function toggleAnswer(button) {
+            const card = button.parentElement;
+            card.classList.toggle('active');
+            if(card.classList.contains('active')) {
+                button.innerHTML = `<i class="fa-solid fa-eye-slash"></i> Hide Answer`;
+            } else {
+                button.innerHTML = `<i class="fa-solid fa-eye"></i> Show Regents Answer`;
+            }
+        }
+
+        // Live Dynamic Progression Tracking Engine
+        const slides = document.querySelectorAll('.slide');
+        const counterText = document.getElementById('slide-index-counter');
+        const fillBar = document.getElementById('progress-indicator');
+
+        function updateProgressOnScroll() {
+            let currentVisibleSlideIndex = window.scrollY;
+            let currentSlideNum = 1;
+            
+            slides.forEach((slide) => {
+                const rect = slide.getBoundingClientRect();
+                // Check if slide top occupies major frame focus
+                if(rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    currentSlideNum = slide.getAttribute('data-index');
+                }
+            });
+
+            counterText.innerText = `Slide ${currentSlideNum} of ${slides.length}`;
+            let progressPercentage = ((currentSlideNum) / slides.length) * 100;
+            fillBar.style.width = `${progressPercentage}%`;
+        }
+
+        window.addEventListener('scroll', updateProgressOnScroll);
+        // Initial Activation Call
+        updateProgressOnScroll();
+    </script>
+
+</body>
+</html>

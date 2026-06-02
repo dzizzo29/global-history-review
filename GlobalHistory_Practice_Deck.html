@@ -1,0 +1,1324 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global History & Geography Comprehensive Mega-Review</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet" />
+    <style type="text/css">
+        /* MASTER SYSTEM STYLING */
+        * { box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Outfit', sans-serif;
+            color: #1e293b;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-container {
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+            margin-bottom: 40px;
+            background: white;
+            padding: 35px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+            border-bottom: 6px solid #3b82f6;
+        }
+
+        h1 {
+            font-family: 'Fredoka', sans-serif;
+            color: #1e3a8a;
+            font-size: 2.8rem;
+            margin: 0 0 12px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 1.2rem;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .deck-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* WORKSPACE GRID ROW */
+        .workspace-row {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 25px;
+            align-items: start;
+        }
+
+        @media (max-width: 950px) {
+            .workspace-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* QUIZ CARD SYSTEM */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.03);
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* CATEGORY TAG RIbBONS */
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 20px;
+        }
+
+        .cat-early { background-color: #fef3c7; color: #b45309; }
+        .cat-belief { background-color: #e0e7ff; color: #4338ca; }
+        .cat-classical { background-color: #d1fae5; color: #065f46; }
+        .cat-trans { background-color: #ffedd5; color: #c2410c; }
+        .cat-middle { background-color: #fce7f3; color: #9d174d; }
+        .cat-geo { background-color: #e0f2fe; color: #0369a1; }
+
+        /* CONTENT ELEMENTS */
+        .stimulus {
+            background-color: #f8fafc;
+            border-left: 5px solid #cbd5e1;
+            padding: 18px 20px;
+            font-style: italic;
+            margin-bottom: 22px;
+            border-radius: 4px 12px 12px 4px;
+            color: #334155;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .question-text {
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 18px;
+            color: #0f172a;
+            line-height: 1.4;
+        }
+
+        .options-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            padding: 14px 18px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .option:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateX(4px);
+        }
+
+        /* REVEAL UTILITIES */
+        .reveal-btn {
+            background-color: #10b981;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-family: 'Outfit', sans-serif;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reveal-btn:hover {
+            background-color: #059669;
+            transform: translateY(-1px);
+        }
+
+        .answer-text {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #ecfdf5;
+            border: 1px dashed #10b981;
+            color: #065f46;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* SIDEBAR STUDY GUIDE TIPS */
+        .study-tip-panel {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 22px;
+            border-top: 5px solid #f59e0b;
+            box-shadow: 0 4px 20px rgba(15, 23, 42, 0.02);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            color: #475569;
+        }
+
+        .tip-title {
+            font-weight: 800;
+            color: #b45309;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1>Global History & Geography Master Review</h1>
+        <p class="subtitle">50 Interactive Curriculum Questions, Stimulus Passages, and Context Pro-Tips</p>
+    </div>
+
+    <div class="deck-container">
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="stimulus">
+                    <strong>Diagram Elements:</strong><br>
+                    • Central Governments & Organized Religion<br>
+                    • Social Classes & Job Specialization<br>
+                    • Cities & Advanced Public Works Infrastructure<br>
+                    • Standardized Systems of Writing, Art, and Architecture
+                </div>
+                <div class="question-text">1. Which title best completes this diagram of overlapping core components?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Elements of a Civilization</li>
+                    <li class="option">(2) Features of a Nomadic Lifestyle</li>
+                    <li class="option">(3) Basic Components of the Paleolithic Age</li>
+                    <li class="option">(4) Human Life 50,000 Years Ago</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Elements of a Civilization</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Concept Tip: Diagrams</div>
+                When a graphic displays branching attributes, look for a singular macro-concept that accommodates all details simultaneously. Things like "writing" and "centralized states" instantly rule out nomadic or paleolithic lifestyles.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="stimulus">“If a seignior [noble] has knocked out the tooth of a seignior of his own rank, they shall knock out his tooth. But if he has knocked out a commoner's tooth, he shall pay one-third mina of silver.”</div>
+                <div class="question-text">2. What type of primary document source does this baseline rule set represent?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Personal Letter</li>
+                    <li class="option">(2) Legal code</li>
+                    <li class="option">(3) Newspaper article</li>
+                    <li class="option">(4) Oral history</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Legal code</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Document Clues</div>
+                An text that models hypothetical condition-action parameters ("If an individual executes X, then consequence Y applies") functions as an official regulatory legal framework or societal law collection.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="stimulus">“If a seignior [noble] has knocked out the tooth of a seignior of his own rank, they shall knock out his tooth. But if he has knocked out a commoner's tooth, he shall pay one-third mina of silver.”</div>
+                <div class="question-text">3. Which truth regarding ancient Babylonian society does this parameter reveal?</div>
+                <ul class="options-list">
+                    <li class="option">(1) All men were treated as equals under state justice frameworks.</li>
+                    <li class="option">(2) Financial remedies were uniformly preferred over physical punishments.</li>
+                    <li class="option">(3) Distinct inequalities and structural divisions separated social classes.</li>
+                    <li class="option">(4) Violent acts were consistently answered with identical acts of violence.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (3) Distinct inequalities and structural divisions separated social classes.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Social Hierarchies</div>
+                Notice the difference in penalties! Damaging an equal's tooth results in physical loss, while damaging a commoner's tooth incurs a basic financial fee. This confirms state laws favored upper classes over lower classes.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-geo"><i class="fa-solid fa-earth-americas"></i> Geography & Maps</span>
+                <div class="stimulus"><strong>Map Environment Context:</strong> Visual overview charting early developments localized tightly along the banks of the Nile, Tigris-Euphrates, Indus, and Huang He.</div>
+                <div class="question-text">4. Identify the primary analytic objective of using a river system layout map.</div>
+                <ul class="options-list">
+                    <li class="option">(1) To track abstract religious ideologies held by early agrarian groups</li>
+                    <li class="option">(2) To observe and compare geographic spatial distributions of early river settlements</li>
+                    <li class="option">(3) To contrast structural differences among distinct early symbolic alphabets</li>
+                    <li class="option">(4) To map merchant trade routes connecting early Mesoamerican populations</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) To observe and compare geographic spatial distributions of early river settlements</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Spatial Reasoning</div>
+                Maps are visual data tools detailing physical placement. Cultural traits like religion or spoken language cannot be determined strictly from geographic river boundary lines.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="question-text">5. Which critical environmental engineering breakthrough enabled these riparian groups to produce food surpluses?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Wood-pulp paper production</li>
+                    <li class="option">(2) Artificial canal and ditch irrigation networks</li>
+                    <li class="option">(3) Magnetic maritime compass tools</li>
+                    <li class="option">(4) Gunpowder-based military options</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Artificial canal and ditch irrigation networks</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Environmental Modification</div>
+                Living along riverbeds requires managing water. Harnessing floodwaters for predictable agricultural use required systems like canals and **irrigation**.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="stimulus"><strong>Historical Trajectory:</strong> Nomadic hunter-gatherers with basic flint tools → Sedentary pastoral farmers domesticating livestock and building villages.</div>
+                <div class="question-text">6. Which analytical label best defines this monumental behavioral turning point?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Structural Components of Major World Faiths</li>
+                    <li class="option">(2) Governance Milestones of Classical Dynasties</li>
+                    <li class="option">(3) Ideological Gains of the Counter-Reformation</li>
+                    <li class="option">(4) Socio-Economic Shifts of the Neolithic Revolution</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (4) Socio-Economic Shifts of the Neolithic Revolution</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Great Turning Points</div>
+                The shift from a nomadic hunter-gatherer lifestyle to a settled agricultural existence is the definition of the **Neolithic Revolution**.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="question-text">7. What was the defining long-term structural effect of the global Neolithic transition?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Foraging bands captured greater systemic influence over regional politics.</li>
+                    <li class="option">(2) The creation and foundational growth of complex, permanent urban civilizations.</li>
+                    <li class="option">(3) Aggregate food supplies dipped into systemic instability worldwide.</li>
+                    <li class="option">(4) Domesticated species rapidly reverted to untamed wild variants.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The creation and foundational growth of complex, permanent urban civilizations.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Cause and Effect</div>
+                Food security anchors populations to a fixed location. This allows for population growth, permanent architecture, specialized labor, and the birth of complex cities.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-belief"><i class="fa-solid fa-book-open"></i> Belief Systems</span>
+                <div class="stimulus">“Honor your father and mother . . . You shall not murder . . . You shall not steal.”</div>
+                <div class="question-text">8. This legal and ethical scriptural framework was originally produced in which cultural zone?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Subcontinental India</li>
+                    <li class="option">(2) Dynastic East Asia</li>
+                    <li class="option">(3) Classical Mediterranean Rome</li>
+                    <li class="option">(4) The Ancient Middle East</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (4) The Ancient Middle East</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Origins of Monotheism</div>
+                These commands are from early Hebrew scripture, originating in the Middle East and laying the groundwork for Judaism, Christianity, and Islam.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-belief"><i class="fa-solid fa-book-open"></i> Belief Systems</span>
+                <div class="stimulus">“In his personal conduct, he was respectful. In his serving his superiors, he was reverent... In governing the people, he was righteous.”</div>
+                <div class="question-text">9. These behavioral principles served as the administrative anchor for which imperial system?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The South Asian Gupta Dynasty</li>
+                    <li class="option">(2) Classical Democratic Athens</li>
+                    <li class="option">(3) The East Asian Han Dynasty</li>
+                    <li class="option">(4) Old Kingdom Egyptian Dynasties</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (3) The East Asian Han Dynasty</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Confucian Standards</div>
+                Values like reverence toward superiors, righteousness, and ritual respect are hallmarks of **Confucianism**. The Han Dynasty integrated these principles into their civil service examinations to select government officials.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-belief"><i class="fa-solid fa-book-open"></i> Belief Systems</span>
+                <div class="question-text">10. Which core functional commonality links the codes shown in Questions 8 and 9?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Both provided explicit ethical frameworks designed to govern personal conduct and social stability.</li>
+                    <li class="option">(2) Both codes directly advanced polytheistic theological practices.</li>
+                    <li class="option">(3) Both texts focused on organizing East Asian legal systems.</li>
+                    <li class="option">(4) Strict trading embargoes entirely blocked these ideas from migrating outward.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Both provided explicit ethical frameworks designed to govern personal conduct and social stability.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Comparative Faiths</div>
+                Despite originating in different cultures, moral guidelines like the Ten Commandments and Confucian ethics both serve to create predictable social behaviors and maintain internal order.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">11. Which geographic theater witnessed overlapping contact with both expanding Islam and Buddhism by 1450?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The Indian subcontinent and strategic zones across Central and Southeast Asia</li>
+                    <li class="option">(2) Highly isolated islands within the Japanese archipelago</li>
+                    <li class="option">(3) Deep interior desert basins of the Arabian Peninsula</li>
+                    <li class="option">(4) Isolated ocean communities along the Western European coastline</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) The Indian subcontinent and strategic zones across Central and Southeast Asia</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Geographic Intersection</div>
+                Central Asia and the Silk Road acted as a cultural crossroads where merchants and pilgrims of different faiths, such as Buddhism and Islam, routinely interacted.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">12. For a modern historian, maps tracking paths radiating from religious centers like Mecca or Patna are best used to analyze:</div>
+                <ul class="options-list">
+                    <li class="option">(1) The role trade networks played in facilitating the transregional diffusion of ideas and belief systems</li>
+                    <li class="option">(2) The exact physical footprints and architectural blueprints of specific target cities</li>
+                    <li class="option">(3) The chronological moments when sailors stopped using traditional wind sails</li>
+                    <li class="option">(4) Modern political borders dividing 21st-century nation-states</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) The role trade networks played in facilitating the transregional diffusion of ideas and belief systems</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Cultural Diffusion</div>
+                Lines tracing outward movement over long distances represent **diffusion**. Belief systems and technologies frequently traveled along established commercial trade networks.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">13. Which assertion regarding early global interactions is validated by tracing Islamic and Buddhist history?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Ideologies migrated across Afro-Eurasia via overland and maritime Silk Road pathways.</li>
+                    <li class="option">(2) Major ethical systems originated exclusively in Western Europe.</li>
+                    <li class="option">(3) Maritime navigation absolute blocked the transmission of abstract philosophical thought.</li>
+                    <li class="option">(4) Belief systems expanded into foreign territories exclusively via military actions.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Ideologies migrated across Afro-Eurasia via overland and maritime Silk Road pathways.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Trade Over War</div>
+                While military actions did occur, peaceful exchange along trade routes by merchants and scholars was a primary driver of cultural diffusion.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="stimulus"><strong>Hierarchical Model:</strong> Monarch → Landed Nobility → Armed Knights → Agrarian Serfs & Peasants.</div>
+                <div class="question-text">14. This structural layout represents a medieval society organized primarily on:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Rigid social stratifications tied directly to mutual protective obligations</li>
+                    <li class="option">(2) Uniform educational testing standards open to all social classes</li>
+                    <li class="option">(3) Fluid socioeconomic mobility based purely on liquid capital wealth</li>
+                    <li class="option">(4) Democratic voting processes determining leadership</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Rigid social stratifications tied directly to mutual protective obligations</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Feudal Structures</div>
+                Feudalism is a decentralized system based on mutual obligations: lords granted land in exchange for military service from knights and labor from serfs.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="question-text">15. What served as the central economic engine of the European feudal ecosystem?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Global industrial ocean commerce networks</li>
+                    <li class="option">(2) Monopoly control over land and self-sufficient agricultural manorial systems</li>
+                    <li class="option">(3) Fiat currency investment banking groups based in urban centers</li>
+                    <li class="option">(4) Transatlantic cash-crop agricultural investment firms</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Monopoly control over land and self-sufficient agricultural manorial systems</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Manorial Economy</div>
+                While feudalism describes the political contract, **manorialism** defines the economic reality: self-sufficient rural estates where land ownership was the primary source of wealth and power.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="question-text">16. The operational dynamics of European manorialism suggest the entire system relied on:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Policies designed to establish class parity and political franchise</li>
+                    <li class="option">(2) Top-down regulations managed by a rising urban middle class</li>
+                    <li class="option">(3) Clear institutional paths for swift upward economic advancement</li>
+                    <li class="option">(4) Systemic agricultural labor provided by low-status peasants and serfs</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (4) Systemic agricultural labor provided by low-status peasants and serfs</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Base of the Pyramid</div>
+                A hierarchical pyramid relies on its foundation. Without the unfree labor of the serfs farming the lord's land, the nobility and warrior classes could not sustain themselves.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="question-text">17. Which historical disruption triggered the shift toward decentralized feudal structures in Western Europe?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The rise of regional democratic general assemblies</li>
+                    <li class="option">(2) The total institutional collapse of the Western Roman Empire</li>
+                    <li class="option">(3) The immediate signing and implementation of the Magna Carta</li>
+                    <li class="option">(4) Rapid automation of urban textile factories</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The total institutional collapse of the Western Roman Empire</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Power Vacuums</div>
+                When centralized Roman authority collapsed, it left Europe vulnerable to instability and frequent invasions. Local populations turned to decentralized military lords for immediate protection.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="stimulus">“To preserve their modesty, young unmarried women rarely went out in public alone, and married women left the house only for specific reasons, such as to go to the market, to church, or to the baths...”</div>
+                <div class="question-text">18. Which cultural dimension is the central analytical focus of this text snippet?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Sudden and unrestricted social mobility across regional classes</li>
+                    <li class="option">(2) Fluctuations in global market interest rates</li>
+                    <li class="option">(3) Institutional gender norms and cultural behavioral expectations</li>
+                    <li class="option">(4) Universal applications of Enlightenment natural rights philosophies</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (3) Institutional gender norms and cultural behavioral expectations</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Social Analysis</div>
+                Passages dictating where and how specific demographic groups can travel reveal the social values and gender roles within that culture.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="stimulus">“Modesty, piety, and self-control were traits of an ideal woman... these women were held to very much the same standards as average women...”</div>
+                <div class="question-text">19. Which statement regarding this social context is supported by the text?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Elite women wielded absolute control over state administrative organs.</li>
+                    <li class="option">(2) Shared behavioral and moral criteria applied to women across different social strata.</li>
+                    <li class="option">(3) The majority of women worked in industrial factory settings.</li>
+                    <li class="option">(4) Legal mandates required unmarried women to undertake maritime voyages alone.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Shared behavioral and moral criteria applied to women across different social strata.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Close Reading</div>
+                The text notes that elite women were "held to very much the same standards as average women," indicating that moral expectations crossed class lines.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-classical"><i class="fa-solid fa-monument"></i> Classical Eras</span>
+                <div class="stimulus"><strong>Chronological Overview:</strong> Invention of paper in East Asia (105 CE) → Early woodblock movable type systems (1041 CE) → Refinement of the magnetic compass (1100 CE) → Migration of compass to Western networks (1190 CE) → Mass production of printed material in Europe (1456 CE).</div>
+                <div class="question-text">20. Which historical generalization is supported by this technological timeline?</div>
+                <ul class="options-list">
+                    <li class="option">(1) For centuries before 1500, technological innovation in China often outpaced that of Western Europe.</li>
+                    <li class="option">(2) Total geographic isolation completely blocked Chinese societies from achieving scientific progress.</li>
+                    <li class="option">(3) European craftsmen originally trained East Asian scholars in paper manufacturing techniques.</li>
+                    <li class="option">(4) China imported its core technological breakthroughs from early Mesoamerican networks.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) For centuries before 1500, technological innovation in China often outpaced that of Western Europe.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Chronological Tracking</div>
+                Note the centuries-long gap between the development of paper and printing technology in East Asia and its subsequent adoption and mass production in Western Europe.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">21. Which historical dynamic enabled these innovations to cross regional borders and reach Europe?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Transregional trade, migration, and exchange networks like the Silk Road and Pax Mongolica</li>
+                    <li class="option">(2) The sudden invention of transatlantic steam-powered transport vessels</li>
+                    <li class="option">(3) The total consolidation of the globe under a single political authority</li>
+                    <li class="option">(4) Early electronic communication networks operating across geographic barriers</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Transregional trade, migration, and exchange networks like the Silk Road and Pax Mongolica</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Interconnectedness</div>
+                Periods of regional stability, such as the **Pax Mongolica**, secured trade routes across Eurasia, allowing technologies to spread from East Asia to the Mediterranean and Europe.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-belief"><i class="fa-solid fa-book-open"></i> Belief Systems</span>
+                <div class="stimulus">“Praise be to Allah, Lord of the creation... You alone we worship, and to you alone we pray for help.”</div>
+                <div class="question-text">22. Adherents who follow the principles detailed within this text practice:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Polytheism</li>
+                    <li class="option">(2) Monotheism</li>
+                    <li class="option">(3) Imperial ruler worship</li>
+                    <li class="option">(4) Secular humanism</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Monotheism</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Theological Vocabulary</div>
+                Phrases like "You alone we worship" identify **monotheism**, the belief in a single, exclusive deity, which characterizes Judaism, Christianity, and Islam.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-belief"><i class="fa-solid fa-book-open"></i> Belief Systems</span>
+                <div class="question-text">23. In which geographic region did Islam emerge during the 7th century CE?</div>
+                <ul class="options-list">
+                    <li class="option">(1) East Asian River Valleys</li>
+                    <li class="option">(2) Maritime Western Europe</li>
+                    <li class="option">(3) The Middle East (Arabian Peninsula)</li>
+                    <li class="option">(4) Southern Africa</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (3) The Middle East (Arabian Peninsula)</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Mapping Origins</div>
+                Islam developed on the Arabian Peninsula, centered around trade hubs like Mecca and Medina, before spreading rapidly across Afro-Eurasia.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="stimulus"><strong>Commercial Scope:</strong> Trans-Saharan trade connections linking commercial hubs like Timbuktu, Ghana, Mali, and Songhai with Mediterranean buyers.</div>
+                <div class="question-text">24. Which historical claim regarding these West African kingdoms is accurate?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The Sahara Desert acted as an absolute, impassable barrier to economic interaction.</li>
+                    <li class="option">(2) Economic power and cultural development grew by controlling trade in gold and salt.</li>
+                    <li class="option">(3) West African civilizations did not develop centralized government structures.</li>
+                    <li class="option">(4) Regional survival relied entirely on maritime trade with the Americas in the 11th century.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Economic power and cultural development grew by controlling trade in gold and salt.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Resource Commodities</div>
+                West African empires generated immense wealth by acting as trade intermediaries, controlling the flow of southern forest **gold** and northern desert **salt**.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">25. Which ruler undertook a famous pilgrimage to Mecca in 1324, demonstrating his empire's wealth?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Mansa Musa</li>
+                    <li class="option">(2) Hammurabi</li>
+                    <li class="option">(3) Shi Huangdi</li>
+                    <li class="option">(4) Charlemagne</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Mansa Musa</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Biographical Anchors</div>
+                Mansa Musa of Mali integrated his empire into the broader Islamic world, distributed gold along his route, and attracted scholars to centers like Timbuktu.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-classical"><i class="fa-solid fa-monument"></i> Classical Eras</span>
+                <div class="stimulus">“I humbly propose that all historical records but those of Chin [Qin] be burned... Those who in conversation dare to quote the old songs and records should be publicly executed...”</div>
+                <div class="question-text">26. Which governance philosophy is explicitly demonstrated by this imperial decree?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Confucian Filial Piety</li>
+                    <li class="option">(2) Athenian Direct Democracy</li>
+                    <li class="option">(3) Legalism</li>
+                    <li class="option">(4) Religious Tolerance</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (3) Legalism</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Authoritarian Rule</div>
+                The Qin Dynasty favored **Legalism**, an authoritarian administrative approach that relied on strict laws, uniform penalties, and censorship to maintain state control.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-classical"><i class="fa-solid fa-monument"></i> Classical Eras</span>
+                <div class="question-text">27. Which massive defense infrastructure project was expanded using forced labor during the Qin Dynasty?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The Grand Canal</li>
+                    <li class="option">(2) The Great Wall of China</li>
+                    <li class="option">(3) The Athenian Parthenon</li>
+                    <li class="option">(4) The Pyramids of Giza</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The Great Wall of China</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Infrastructure Achievements</div>
+                To deter northern nomadic raids, Emperor Shi Huangdi consolidated and extended regional fortifications into the **Great Wall of China**.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="stimulus">“...members of Mongol trading caravans spread stories intended to cause panic... terrible destruction was threatened in the event of resistance...”</div>
+                <div class="question-text">28. On which continent did nomadic horse archers forge the largest contiguous land empire in history?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Europe</li>
+                    <li class="option">(2) Africa</li>
+                    <li class="option">(3) Asia</li>
+                    <li class="option">(4) North America</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (3) Asia</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Continent Identification</div>
+                Originating in the East Asian steppes, the Mongol Empire expanded to span across the Asian landmass into Eastern Europe.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">29. What was an overarching historical effect of the consolidation of the Mongol Empire?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The permanent disruption of global trade networks</li>
+                    <li class="option">(2) Increased safety along Eurasian trade routes (Pax Mongolica), leading to widespread cultural diffusion</li>
+                    <li class="option">(3) The mandatory conversion of conquered populations to Christianity</li>
+                    <li class="option">(4) The immediate colonization of the Americas</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Increased safety along Eurasian trade routes (Pax Mongolica), leading to widespread cultural diffusion</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Stabilizing Factors</div>
+                The phrase **Pax Mongolica** describes the period of stability that protected merchants, diplomats, and travelers along the Silk Roads.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="stimulus">“The basic idea of this book is simple: to tell the story of the Crusades as they were seen, lived, and recorded on ‘the other side’—in other words, in the Arab camp.”</div>
+                <div class="question-text">30. This approach highlights a modern historian's emphasis when evaluating historical conflicts on:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Analyzing direct cause-and-effect patterns exclusively</li>
+                    <li class="option">(2) Compiling strict, uninterpreted chronological lists</li>
+                    <li class="option">(3) Evaluating historical point of view and perspective</li>
+                    <li class="option">(4) Relying solely on physical archaeological excavations</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (3) Evaluating historical point of view and perspective</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Historical Method</div>
+                Examining documentation from multiple sides of a conflict allows historians to identify biases, evaluate perspective, and construct a more balanced narrative.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="question-text">31. What was a significant long-term commercial result of the Crusades for Western Europe?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Western Europe adopted policies of strict isolationism.</li>
+                    <li class="option">(2) Increased demand for Asian and Middle Eastern luxury goods accelerated a revival of trade.</li>
+                    <li class="option">(3) Feudal obligations became permanently unshakeable.</li>
+                    <li class="option">(4) European monarchs surrendered all sovereign governing authority.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Increased demand for Asian and Middle Eastern luxury goods accelerated a revival of trade.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Trade Revival</div>
+                Exposure to Eastern spices, silks, and technologies during the Crusades fueled European demand for foreign goods, stimulating maritime trade networks and merchant wealth.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="question-text">32. The existence of conflicting primary accounts of the Crusades demonstrates that historical narratives:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Are subject to ongoing debate, interpretation, and point of view</li>
+                    <li class="option">(2) Provide little analytical value to modern research efforts</li>
+                    <li class="option">(3) Remain identical across differing cultures and eras</li>
+                    <li class="option">(4) Exclude authentic personal or cultural details</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Are subject to ongoing debate, interpretation, and point of view</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Narrative Reliability</div>
+                Primary sources reflect the personal, political, and religious viewpoints of their authors, meaning history must be cross-examined rather than accepted at face value.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">33. Which empire expanded to control intersections across the Middle East, North Africa, and Southeastern Europe by the 1500s?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The Aztec Empire</li>
+                    <li class="option">(2) The Ottoman Empire</li>
+                    <li class="option">(3) The Roman Republic</li>
+                    <li class="option">(4) The Han Dynasty</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The Ottoman Empire</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Intersection Power</div>
+                By bridging three continents, the Ottoman Empire controlled lucrative overland trade crossroads, prompting Western European nations to seek maritime Atlantic routes to Asia.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-middle"><i class="fa-solid fa-shield-halved"></i> Medieval Worlds</span>
+                <div class="question-text">34. The capture of which strategic capital city in 1453 marked the formal collapse of the Byzantine Empire?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Rome</li>
+                    <li class="option">(2) Constantinople</li>
+                    <li class="option">(3) Cairo</li>
+                    <li class="option">(4) Baghdad</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Constantinople</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Strategic Cities</div>
+                Sultan Mehmed II breached the walls of **Constantinople**, renaming it Istanbul and securing it as the capital of the Ottoman Empire.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">35. Admiral Zheng He’s naval expeditions during the early 15th century demonstrate that Ming China:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Possessed advanced maritime technology capable of projecting power across the Indian Ocean</li>
+                    <li class="option">(2) Was immediately vulnerable to European expansion efforts</li>
+                    <li class="option">(3) Maintained strict isolationism that prevented foreign maritime interactions</li>
+                    <li class="option">(4) Focused its resources on establishing colonies in Arctic regions</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Possessed advanced maritime technology capable of projecting power across the Indian Ocean</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Fleet Projection</div>
+                Decades before European exploration, Zheng He’s large "treasure ships" sailed to Southeast Asia, India, East Africa, and Arabia to project the prestige of the Ming Emperor.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">36. Where did the 14th-century epidemic known as the Black Death originate?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Western Europe</li>
+                    <li class="option">(2) Central and East Asia</li>
+                    <li class="option">(3) North America</li>
+                    <li class="option">(4) Southern Africa</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Central and East Asia</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Vectors of Disease</div>
+                The bubonic plague pathogen originated in Central Asia before following active trans-Eurasian trade corridors westward to European ports.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">37. Which group was primarily responsible for spreading the plague vector across Afro-Eurasia?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Isolated mountain communities</li>
+                    <li class="option">(2) Merchants, soldiers, and travelers moving along active commercial paths</li>
+                    <li class="option">(3) Factory laborers working in European urban centers</li>
+                    <li class="option">(4) Agricultural field hands in Mayan territories</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Merchants, soldiers, and travelers moving along active commercial paths</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Commercial Risk</div>
+                The same shipping networks and caravans that transported valuable trade goods also served as vectors for flea-ridden rodents, accelerating transmission between ports.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">38. Which concept explains how the Black Death spread across vastly distant regions?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Regional isolationism</li>
+                    <li class="option">(2) Interconnectedness via vibrant trade networks</li>
+                    <li class="option">(3) Democratic access to healthcare options</li>
+                    <li class="option">(4) Industrial factory urbanization</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Interconnectedness via vibrant trade networks</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Systemic Interactivity</div>
+                This rapid transmission serves as an early example of **interconnectedness**: the reality that distant geographic zones were linked through trade.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-classical"><i class="fa-solid fa-monument"></i> Classical Eras</span>
+                <div class="question-text">39. The preservation of Greco-Roman philosophy alongside major original advancements in math and medicine during Europe's early Middle Ages occurred primarily within:</div>
+                <ul class="options-list">
+                    <li class="option">(1) The Islamic Golden Age (Abbasid Caliphate)</li>
+                    <li class="option">(2) Nomadic foraging bands</li>
+                    <li class="option">(3) Isolated Scandinavian fishing communities</li>
+                    <li class="option">(4) Classical Roman gladiatorial arenas</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) The Islamic Golden Age (Abbasid Caliphate)</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Knowledge Preservation</div>
+                Centers of learning like the House of Wisdom in Baghdad translated and preserved classical texts while pioneering innovations in algebra, optics, and medicine.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">40. The transmission of paper-making technology from China through the Islamic world to Europe is a clear example of:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Cultural diffusion</li>
+                    <li class="option">(2) Continental isolationism</li>
+                    <li class="option">(3) Natural biological selection</li>
+                    <li class="option">(4) Industrial urban environmental pollution</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Cultural diffusion</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Conceptual Mastery</div>
+                Whenever technology, ideas, or architectural practices pass from one distinct civilization group to another, the analytical label to apply is **cultural diffusion**.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="stimulus">“He forces all noble lords to reside at his grand palace complex... absolute bureaucratic control is centralized firmly within his person.”</div>
+                <div class="question-text">41. The actions described within this analytical passage identify the ruler as an:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Democratically elected executive</li>
+                    <li class="option">(2) Absolute monarch</li>
+                    <li class="option">(3) Constitutional prime minister</li>
+                    <li class="option">(4) Autonomous tribal chieftain</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Absolute monarch</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Consolidation of Power</div>
+                Rulers who centralize administrative functions, strip power from the nobility, and exercise total control model the traits of **absolutism**.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="stimulus">“The transition from hunting and gathering to systematic agriculture... allowed for steady food supplies and settled life.”</div>
+                <div class="question-text">42. This excerpt details which key historical turning point?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The Western European Crusades</li>
+                    <li class="option">(2) The Neolithic Revolution</li>
+                    <li class="option">(3) The Protestant Reformation</li>
+                    <li class="option">(4) The Scientific Revolution</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The Neolithic Revolution</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Review Mastery</div>
+                Remember, look for terms like "systematic agriculture," "domestication," and "settled life" to identify the Neolithic transition.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="question-text">43. Which structural realignment followed this agricultural transition?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The expansion of migratory foraging bands</li>
+                    <li class="option">(2) The initial development of settled urban areas and complex civilizations</li>
+                    <li class="option">(3) A sharp decline in the aggregate global human population</li>
+                    <li class="option">(4) The total abandonment of agricultural cultivation efforts</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The initial development of settled urban areas and complex civilizations</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Concept Connection</div>
+                Farming generated food surpluses, which supported growing populations and allowed for the division of labor and urbanization.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="question-text">44. What was a direct demographic impact of the historical Triangular Trade network?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Forced enslavement and forced migration of millions of Africans</li>
+                    <li class="option">(2) Sudden abandonment of European home territories</li>
+                    <li class="option">(3) The total eradication of plantation cash-crop cultivation systems</li>
+                    <li class="option">(4) Universal adoption of peace treaties between competing nations</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (1) Forced enslavement and forced migration of millions of Africans</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Forced Migration</div>
+                The transatlantic slave trade destabilized African communities, introducing forced demographic realignments to support plantation economies in the Americas.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-trans"><i class="fa-solid fa-route"></i> Networks of Exchange</span>
+                <div class="stimulus"><strong>Population Tracking:</strong> Between 1540 and 1580, data shows the indigenous population of Central Mexico fell from roughly 20 million to fewer than 5 million.</div>
+                <div class="question-text">45. Which factor best accounts for this population trend?</div>
+                <ul class="options-list">
+                    <li class="option">(1) Mass voluntary migration to European centers</li>
+                    <li class="option">(2) The introduction of Old World diseases by European arrivals</li>
+                    <li class="option">(3) A decline in birth rates across indigenous families</li>
+                    <li class="option">(4) Starvation caused by a refusal to cultivate fish resources</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The introduction of Old World diseases by European arrivals</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Biological Shock</div>
+                Lacking acquired immunity, indigenous populations faced high mortality rates from European diseases like smallpox, which facilitated the collapse of regional empires.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="question-text">46. Ancient Egyptian models show a structure containing Pharaohs, priests, nobles, scribes, artisans, and farmers. This indicates:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Egyptian society prioritized absolute social parity and resource equality.</li>
+                    <li class="option">(2) The social hierarchy was strictly stratified.</li>
+                    <li class="option">(3) Social mobility was fluid and open to all individuals.</li>
+                    <li class="option">(4) Military forces were entirely absent from state operations.</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The social hierarchy was strictly stratified.</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Social Pyramids</div>
+                A tiered list or pyramid layout mapping status rankings reflects a **hierarchical** or stratified social order.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-early"><i class="fa-solid fa-gavel"></i> Early Civilizations</span>
+                <div class="question-text">47. The Egyptian development of hieroglyphics served an administrative function comparable to the Sumerian use of:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Phoenician alphabetical systems</li>
+                    <li class="option">(2) Cuneiform script</li>
+                    <li class="option">(3) Mesoamerican quipu string systems</li>
+                    <li class="option">(4) Movable type print machinery</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Cuneiform script</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Functional Equivalents</div>
+                While the visual symbols differed, both Egyptian **hieroglyphics** and Sumerian **cuneiform** were early writing systems developed to record laws, taxes, and trade transactions.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-geo"><i class="fa-solid fa-earth-americas"></i> Geography & Maps</span>
+                <div class="question-text">48. On a standard map projection, the landmass south of Europe bordered by the Atlantic and Indian Oceans is:</div>
+                <ul class="options-list">
+                    <li class="option">(1) Asia</li>
+                    <li class="option">(2) Africa</li>
+                    <li class="option">(3) South America</li>
+                    <li class="option">(4) Australia</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) Africa</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Map Identification</div>
+                Review your global geography terms. This description matches Africa, the home of the Nile River valley and the Trans-Saharan trade networks.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-geo"><i class="fa-solid fa-earth-americas"></i> Geography & Maps</span>
+                <div class="question-text">49. Which body of water separates southern Europe from northern Africa?</div>
+                <ul class="options-list">
+                    <li class="option">(1) The Pacific Ocean</li>
+                    <li class="option">(2) The Mediterranean Sea</li>
+                    <li class="option">(3) The Indian Ocean</li>
+                    <li class="option">(4) The Caribbean Sea</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (2) The Mediterranean Sea</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Geographic Intersections</div>
+                The **Mediterranean Sea** served as a major commercial highway, connecting Roman, Byzantine, Islamic, and Ottoman trade networks.
+            </div>
+        </div>
+
+        <div class="workspace-row">
+            <div class="card">
+                <span class="category-badge cat-geo"><i class="fa-solid fa-earth-americas"></i> Geography & Maps</span>
+                <div class="question-text">50. Which continent features historical networks like the Silk Road, the Great Wall, and early dynastic systems?</div>
+                <ul class="options-list">
+                    <li class="option">(1) North America</li>
+                    <li class="option">(2) South America</li>
+                    <li class="option">(3) Asia</li>
+                    <li class="option">(4) Antarctica</li>
+                </ul>
+                <div class="answer-container">
+                    <button class="reveal-btn" onclick="toggleAnswer(this)"><i class="fa-solid fa-eye"></i> Reveal Key</button>
+                    <div class="answer-text">Answer: (3) Asia</div>
+                </div>
+            </div>
+            <div class="study-tip-panel">
+                <div class="tip-title"><i class="fa-solid fa-lightbulb"></i> Final Drill</div>
+                Asia is the geographic origin of innovations like paper and printing, major trade routes like the Silk Road, and empires like the Qin, Han, and Mongols.
+            </div>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        function toggleAnswer(button) {
+            var answerText = button.nextElementSibling;
+            if (answerText.style.display === "block") {
+                answerText.style.display = "none";
+                button.innerHTML = '<i class="fa-solid fa-eye"></i> Reveal Key';
+                button.style.backgroundColor = "#10b981";
+            } else {
+                answerText.style.display = "block";
+                button.innerHTML = '<i class="fa-solid fa-eye-slash"></i> Hide Key';
+                button.style.backgroundColor = "#64748b";
+            }
+        }
+    </script>
+</body>
+</html>
+
+```
